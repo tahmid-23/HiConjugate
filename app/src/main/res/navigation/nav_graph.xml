@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dedication">
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_fragmentHeckOne"
+            app:destination="@id/fragmentHeckOne" />
+        <action
+            android:id="@+id/action_quizFragment_to_heckFragmentGame"
+            app:destination="@id/heckFragmentGame"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/dedication"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.DedicationFragment"
+        android:label="Dedication" >
+        <action
+            android:id="@+id/action_dedication_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/dedication"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHeckOne"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.heck.FragmentHeckOne"
+        android:label="fragment_heck_one"
+        tools:layout="@layout/fragment_heck_one" >
+        <argument
+            android:name="message"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.SettingsFragment"
+        android:label="SettingsFragment" />
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/settingsFragment" />
+    <fragment
+        android:id="@+id/heckFragmentGame"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.heck.HeckFragmentGame"
+        android:label="fragment_heck_game"
+        tools:layout="@layout/fragment_heck_game" >
+        <argument
+            android:name="conjugations"
+            app:argType="com.github.tahmid_23.hiconjugate.conjugation.Conjugation[]" />
+        <action
+            android:id="@+id/action_heckFragmentGame_to_fragmentHeckTwo"
+            app:destination="@id/fragmentHeckTwo"
+            app:popUpTo="@id/heckFragmentGame"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHeckTwo"
+        android:name="com.github.tahmid_23.hiconjugate.fragment.heck.FragmentHeckTwo"
+        android:label="fragment_heck_two"
+        tools:layout="@layout/fragment_heck_two" >
+        <argument
+            android:name="success"
+            app:argType="boolean" />
+    </fragment>
+</navigation>
