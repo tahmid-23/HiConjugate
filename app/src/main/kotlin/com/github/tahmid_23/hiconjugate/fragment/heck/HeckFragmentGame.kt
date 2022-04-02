@@ -80,6 +80,7 @@ class HeckFragmentGame : Fragment() {
                 if (choice == chosenConjugation.conjugation) {
                     if (++answeredQuestions < 10) {
                         handler.removeCallbacksAndMessages(null)
+                        millisRemaining = MILLIS_PER_QUESTION
                         handler.postDelayed(::tick, 100L)
                         refreshConjugations()
                     }
@@ -157,7 +158,7 @@ class HeckFragmentGame : Fragment() {
         verbAnimation.cancel()
         questionAnimation.cancel()
 
-        val action = HeckFragmentGameDirections.actionHeckFragmentGameToFragmentHeckTwo(false)
+        val action = HeckFragmentGameDirections.actionHeckFragmentGameToFragmentHeckTwo(success)
         findNavController().navigate(action)
     }
 

@@ -1,5 +1,6 @@
 package com.github.tahmid_23.hiconjugate.fragment.heck
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.content.edit
 import com.github.tahmid_23.hiconjugate.R
 import com.github.tahmid_23.hiconjugate.shaker.REPEAT_COUNT
 import com.github.tahmid_23.hiconjugate.shaker.REPEAT_LENGTH
@@ -42,10 +44,15 @@ class FragmentHeckTwo : Fragment() {
 
         val messageView = view.findViewById<TextView>(R.id.message_of_heck)
         if (success) {
-            messageView.text = "I KNEW you were too weak."
+            messageView.text = "You were lucky this time."
+            requireActivity()
+                .getSharedPreferences("conjugate_credits", Context.MODE_PRIVATE)
+                .edit(true) {
+                    putInt("credits", 1000)
+                }
         }
         else {
-            messageView.text = "You were lucky this time."
+            messageView.text = "I KNEW you were too weak."
         }
         shake(messageView)
 
